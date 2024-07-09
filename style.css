@@ -1,0 +1,175 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:700);
+:root {
+  /* Sizes */
+  --gap-size: 100px;
+
+  --obs-width: 1920px;
+  --obs-height: calc(var(--obs-width) * .5625);
+
+  --chat-width: 360px; /* This is mostly just to get the height of both windows the same for now */
+  --chat-height: calc(var(--obs-height) - (var(--gap-size) * 2));
+
+  /* --game-width: calc(var(--obs-width) - var(--chat-width) - (var(--gap-size) * 3)); */
+  --game-width: 1100px;
+  --game-height: calc(var(--game-width) * .75);
+
+  --alert-width: calc(var(--obs-width) - var(--chat-width) - var(--game-width) - (var(--gap-size) * 2));
+  --alert-height: 300px;
+
+  /* Colors */
+  --seafoam: #BAD9C2;
+  --cream: #F2E0C9;
+  --orange: #BF7D56;
+  --brown: #734E38;
+  --brick: #A64F3C;
+
+  --background-color: var(--cream);
+  --title-color: var(--brick);
+  --text-color: #333333;
+  --background-gradient-1: var(--seafoam);
+  --background-gradient-2: var(--orange);
+
+  --border-width: 12px;
+  --border-color: var(--brick);
+  --border-radius: 10px;
+  --border-gradient-1: var(--brick);
+  --border-gradient-2: var(--brown);
+
+  --title-color: var(--brick);
+
+  --font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  border: none;
+  background: #000000;
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+}
+
+#info {
+  width: 100%;
+  height: 200px;
+  background: #ffffff;
+  margin-top: 10px;
+  padding: 10px 30px;
+}
+.info-wrapper {
+  display: flex;
+  flex-direction: row;
+  border-top: 2px solid #000000;
+  padding-top: 10px;
+}
+.info-container {
+  padding: 10px;
+  border-right: 1px solid #000000;
+}
+.info-container:last-child {
+  border-right: none;
+}
+
+#obs {
+  width: var(--obs-width);
+  height: var(--obs-height);
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.animated-border {
+  border-radius: var(--border-radius);
+  background: var(--border-color);
+}
+.inner {
+  margin: var(--border-width);
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  width: calc(100% - var(--border-width) - var(--border-width));
+  height: calc(100% - var(--border-width) - var(--border-width));
+}
+
+#title {
+  position: absolute;
+  left: calc(var(--gap-size) * 1.5);
+  top: 86px;
+  font-size: 80px;
+  color: var(--title-color);
+}
+
+#game-capture {
+  width: var(--game-width);
+  height: var(--game-height);
+  position: absolute;
+  left: var(--gap-size);
+  bottom: var(--gap-size);
+}
+#game-capture img {
+  width: 100%;
+  height: 100%;
+}
+
+#alerts {
+  width: var(--alert-width);
+  height: var(--alert-height);
+  position: absolute;
+  top: calc(var(--gap-size) * 2);
+  left: calc(var(--gap-size) + var(--game-width));
+}
+#alerts iframe {
+  border: none;
+  background: none;
+  width: var(--alert-width);
+  height: var(--alert-height);
+}
+
+#chat {
+  width: var(--chat-width);
+  height: var(--chat-height);
+  text-align: left;
+  position: absolute;
+  top: var(--gap-size);
+  right: var(--gap-size);
+}
+#chat iframe {
+  border: none;
+  background: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Animations */
+#obs,
+.animated-border {
+  background-size: 300% 300%;
+	animation: gradient 15s ease infinite;
+}
+#obs {
+  background: linear-gradient(-45deg, var(--background-gradient-1), var(--background-gradient-2));
+}
+.animated-border {
+  background: linear-gradient(-45deg, var(--border-gradient-1), var(--border-gradient-2));
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
