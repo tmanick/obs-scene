@@ -4,14 +4,16 @@
   --gap-size: 100px;
 
   --obs-width: 1920px;
-  --obs-height: calc(var(--obs-width) * .5625);
+  --obs-height: calc(var(--obs-width) * .5625); /* 16:9 */
 
-  --chat-width: 360px; /* This is mostly just to get the height of both windows the same for now */
+  --chat-width: 400px;
   --chat-height: calc(var(--obs-height) - (var(--gap-size) * 2));
 
   /* --game-width: calc(var(--obs-width) - var(--chat-width) - (var(--gap-size) * 3)); */
-  --game-width: 1100px;
-  --game-height: calc(var(--game-width) * .75);
+  /* --game-width: 1100px; */
+  /* --game-height: calc(var(--game-width) * 0.875); /* 8:7 */
+  --game-height: calc(var(--obs-height) - (var(--gap-size) * 2.4));
+  --game-width: calc(var(var(--game-height) * 1.14285714)); /* 8:7 */
 
   --alert-width: calc(var(--obs-width) - var(--chat-width) - var(--game-width) - (var(--gap-size) * 2));
   --alert-height: 300px;
@@ -23,19 +25,27 @@
   --brown: #734E38;
   --brick: #A64F3C;
 
+  --light-red: #D90404;
+  --dark-red: #A60F1B;
+  --dark-blue: #157EBF;
+  --light-green: #0ABF04;
+  --dark-green: #09A603;
+
+  --light-gray: #F2F2F2;
+  --dark-gray: #848484;
+
   --background-color: var(--cream);
-  --title-color: var(--brick);
+  --title-color: var(--dark-red);
+  --title-color-2: var(--light-red);
   --text-color: #333333;
-  --background-gradient-1: var(--seafoam);
-  --background-gradient-2: var(--orange);
+  --background-gradient-1: var(--light-gray);
+  --background-gradient-2: var(--dark-gray);
 
   --border-width: 12px;
   --border-color: var(--brick);
   --border-radius: 10px;
-  --border-gradient-1: var(--brick);
-  --border-gradient-2: var(--brown);
-
-  --title-color: var(--brick);
+  --border-gradient-1: var(--light-green);
+  --border-gradient-2: var(--dark-green);
 
   --font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -100,12 +110,25 @@ body {
   height: calc(100% - var(--border-width) - var(--border-width));
 }
 
-#title {
+.title {
   position: absolute;
-  left: calc(var(--gap-size) * 1.5);
-  top: 86px;
-  font-size: 80px;
   color: var(--title-color);
+  background: linear-gradient(180deg, var(--title-color), var(--title-color-2));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#title {
+  left: calc(var(--gap-size) * 1.5);
+  top: 69px;
+  font-size: 80px;
+}
+#subtitle {
+  background: linear-gradient(0deg, var(--title-color), var(--title-color-2));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  right: 853px;
+  bottom: 44px;
+  font-size: 60px;
 }
 
 #game-capture {
@@ -150,16 +173,16 @@ body {
 }
 
 /* Animations */
-#obs,
-.animated-border {
-  background-size: 300% 300%;
-	animation: gradient 15s ease infinite;
-}
+
 #obs {
-  background: linear-gradient(-45deg, var(--background-gradient-1), var(--background-gradient-2));
+  background: linear-gradient(60deg, var(--background-gradient-1), var(--background-gradient-2));
+  /* background-size: 400% 400%;
+	animation: gradient 15s ease infinite; */
 }
 .animated-border {
-  background: linear-gradient(-45deg, var(--border-gradient-1), var(--border-gradient-2));
+  background: linear-gradient(135deg, var(--border-gradient-1), var(--border-gradient-2));
+  /* background-size: 200% 200%;
+	animation: gradient 10s ease infinite; */
 }
 
 @keyframes gradient {
