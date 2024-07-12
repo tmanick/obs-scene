@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:700);
 :root {
   /* Sizes */
-  --gap-size: 100px;
+  --gap-size: 50px;
 
   --obs-width: 1920px;
   --obs-height: calc(var(--obs-width) * .5625); /* 16:9 */
@@ -12,11 +12,16 @@
   /* --game-width: calc(var(--obs-width) - var(--chat-width) - (var(--gap-size) * 3)); */
   /* --game-width: 1100px; */
   /* --game-height: calc(var(--game-width) * 0.875); /* 8:7 */
-  --game-height: calc(var(--obs-height) - (var(--gap-size) * 2.4));
-  --game-width: calc(var(var(--game-height) * 1.14285714)); /* 8:7 */
+  --game-height: calc(var(--obs-height) - (var(--gap-size) * 2.5));
+  --game-width: calc(var(--game-height) * 1.14285714); /* 8:7 */
 
   --alert-width: calc(var(--obs-width) - var(--chat-width) - var(--game-width) - (var(--gap-size) * 2));
   --alert-height: 300px;
+
+  --title-bottom: calc(var(--gap-size) + var(--game-height) - 24px);
+  --title-left: calc(var(--gap-size) * 1.5);
+  --subtitle-bottom: calc(var(--gap-size) - 56px);
+  --subtitle-left: calc(var(--gap-size) * 4);
 
   /* Colors */
   --seafoam: #BAD9C2;
@@ -106,28 +111,28 @@ body {
   margin: var(--border-width);
   border-radius: var(--border-radius);
   background: var(--background-color);
-  width: calc(100% - var(--border-width) - var(--border-width));
-  height: calc(100% - var(--border-width) - var(--border-width));
+  width: calc(100% - (var(--border-width) * 2));
+  height: calc(100% - (var(--border-width) * 2));
 }
 
 .title {
   position: absolute;
   color: var(--title-color);
-  background: linear-gradient(180deg, var(--title-color), var(--title-color-2));
+  /* background: linear-gradient(180deg, var(--title-color), var(--title-color-2));
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
 }
 #title {
-  left: calc(var(--gap-size) * 1.5);
-  top: 69px;
+  left: var(--title-left);
+  bottom: var(--title-bottom);
   font-size: 80px;
 }
 #subtitle {
-  background: linear-gradient(0deg, var(--title-color), var(--title-color-2));
+  /* background: linear-gradient(0deg, var(--title-color), var(--title-color-2));
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  right: 853px;
-  bottom: 44px;
+  -webkit-text-fill-color: transparent; */
+  left: var(--subtitle-left);
+  bottom: var(--subtitle-bottom);
   font-size: 60px;
 }
 
